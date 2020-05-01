@@ -1,0 +1,17 @@
+* {
+    text-align: center;
+}
+
+
+#player-scores {
+    font-size: 18px;
+}
+#start-game, #game-board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-board, #current-player, #player-scores {
+    display: none;
+}
