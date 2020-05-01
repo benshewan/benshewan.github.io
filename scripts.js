@@ -112,7 +112,7 @@
                         //run when answer is wrong
                     } else {
                         console.log("what a failure!");
-                        currentCell.style.backgroundColor = "blue";
+                        currentCell.style.backgroundColor = "#0078e7";
                     }
                     modal.close();
                     modal.destroy();
