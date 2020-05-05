@@ -38,16 +38,13 @@
         document.getElementById("player-scores").innerHTML = ""
         for (playerAmount; playerAmount != 0; playerAmount--) {
             players.push(0);
-            console.log(players)
-            console.log(currentPlayer)
             document.getElementById("player-scores").innerHTML += `<span>Player ${playerAmount}:</span><span id="player-${playerAmount}" style="margin-right: 20px">$${players[currentPlayer-1]}</span>`
         }
 
         //if random category is chosen then pick a random number
         function categoryCheck(value) {
             if (value === "any") {
-                value = Math.floor(Math.random() * 5) + 9;
-                console.log(value);
+                value = Math.floor(Math.random() * 23) + 9;
                 //makes sure all random values are different from user selected options
                 let choices = document.querySelectorAll(`.category`);
                 choices.forEach(element => {
@@ -62,7 +59,6 @@
         for (let i = 1; i <= 5; i++) {
             let category = document.getElementById(`category-${i}`).value;
             category = categoryCheck(category);
-            console.log(`Category: ${category}`);
             ApiRequest(category, i);
             if (i === 5) {
                 setTimeout(() => {
