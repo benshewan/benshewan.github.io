@@ -46,7 +46,15 @@
         //if random category is chosen then pick a random number
         function categoryCheck(value) {
             if (value === "any") {
-                value = Math.floor(Math.random() * 23) + 9;
+                value = Math.floor(Math.random() * 5) + 9;
+                console.log(value);
+                //makes sure all random values are different from user selected options
+                let choices = document.querySelectorAll(`.category`);
+                choices.forEach(element => {
+                    if(value == element.value) {
+                       value = categoryCheck("any");
+                    }
+                });
             }
             return value
         }
@@ -54,6 +62,7 @@
         for (let i = 1; i <= 5; i++) {
             let category = document.getElementById(`category-${i}`).value;
             category = categoryCheck(category);
+            console.log(`Category: ${category}`);
             ApiRequest(category, i);
             if (i === 5) {
                 setTimeout(() => {
