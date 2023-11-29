@@ -4,9 +4,9 @@
     let players = [];
     let currentPlayer = 1;
     //attach listener to start button
-    document.getElementById("start-game").addEventListener("click", () => {
+    document.getElementById("start-game").addEventListener("click", async () => {
         if (!(clickedStart >= 1)) {
-            StartGame();
+            await StartGame();
             clickedStart++;
         }
     });
@@ -32,7 +32,7 @@
     }
 
     //function run when start button is pressed, begins building the table
-    function StartGame() {
+    async function StartGame() {
         //create player score board
         let playerAmount = document.getElementById("players").value;
         document.getElementById("player-scores").innerHTML = ""
@@ -59,8 +59,7 @@
         for (let i = 1; i <= 5; i++) {
             let category = document.getElementById(`category-${i}`).value;
             category = categoryCheck(category);
-            await wait(4000);
-            ApiRequest(category, i);
+            await ApiRequest(category, i);
             if (i === 5) {
                 setTimeout(() => {
                     document.getElementById("game-setup").style.display = "none";
@@ -172,6 +171,7 @@
         await fetch(hardURL)
             .then(response => response.json())
             .then(json => data.push(json));
+        await wait(4000);
         fillTable(data, index)
         //console.log(data)
     }
