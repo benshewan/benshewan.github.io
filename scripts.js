@@ -59,6 +59,7 @@
         for (let i = 1; i <= 5; i++) {
             let category = document.getElementById(`category-${i}`).value;
             category = categoryCheck(category);
+            await wait(4000);
             ApiRequest(category, i);
             if (i === 5) {
                 setTimeout(() => {
@@ -149,6 +150,11 @@
             }
         }
     }
+
+    async function wait(delay) {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+
     //send three separate api requests and bundle all the data together
     async function ApiRequest(categoryId, index) {
         let easyURL = `https://opentdb.com/api.php?amount=2&category=${categoryId}&difficulty=easy&type=multiple`;
@@ -158,9 +164,11 @@
         await fetch(easyURL)
             .then(response => response.json())
             .then(json => data.push(json))
+        await wait(4000);
         await fetch(mediumURL)
             .then(response => response.json())
             .then(json => data.push(json))
+        await wait(4000);
         await fetch(hardURL)
             .then(response => response.json())
             .then(json => data.push(json));
